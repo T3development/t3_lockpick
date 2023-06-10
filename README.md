@@ -12,6 +12,20 @@ A lockpick minigame for use with other scripts
 
 > Restart your server.
 
+## Example
+
+```lua
+---@param item string|float?
+---@param difficulty number?
+---@param pins number?
+local success = exports["t3_lockpick"]:startLockpick(item, difficulty, pins)
+if success then
+    -- Unlock vehicle
+else
+    -- Remove lockpick
+end
+```
+
 ## Support
 
 Support and updates are offered through our Discord: https://discord.gg/t3dev
