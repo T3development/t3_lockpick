@@ -321,6 +321,7 @@
       createPins();
       positionPins();
       showGame();
+      applyTension();
     }
 
     // Create pin elements
@@ -349,19 +350,10 @@
     // Event listener for mouse movement
     lockContainer.addEventListener('mousemove', moveHook);
 
-    // Event listener for pressing 'd' key
     document.addEventListener('keydown', function (event) {
-      if (event.key === 'd' && !isPinning) {
-        applyTension();
-      } else if (event.key === 'Backspace' || event.key === 'Escape') {
+      if (event.key === 'Backspace' || event.key === 'Escape') {
         lockContainer.classList.add('hide');
         $.post("https://t3_lockpick/close");
-      }
-    });
-
-    // Event listener for releasing 'd' key
-    document.addEventListener('keyup', function (event) {
-      if (event.key === 'd' && isPinning) {
         releaseTension();
       }
     });
@@ -517,6 +509,7 @@
               setTimeout(() => {
                 lockContainer.classList.add('hide');
                 $.post("https://t3_lockpick/succeed");
+                releaseTension();
                 wrench.classList.remove('rotate');
               }, 1000); // Cooldown period in milliseconds
             }, 50); // Cooldown period in milliseconds
@@ -537,6 +530,7 @@
             setTimeout(() => {
               lockContainer.classList.add('hide');
               $.post("https://t3_lockpick/failed");
+              releaseTension();
             }, 500); // Cooldown period in milliseconds
           } else {
             // Failed attempt
