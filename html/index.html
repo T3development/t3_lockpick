@@ -361,7 +361,7 @@
 
     // Event listener for releasing 'd' key
     document.addEventListener('keyup', function (event) {
-      if (event.key === 'd' && isPinning) {
+      if ((event.key === 'd' || event.key === 'D') && isPinning) {
         releaseTension();
       }
     });
